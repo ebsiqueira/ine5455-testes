@@ -25,11 +25,10 @@ class TestBoard(unittest.TestCase):
         empresa = Empresa('Figueirense S.A.')
         empresa.criar_funcionario('Joao')
         self.assertEqual(empresa.funcionarios[0].nome, 'Joao')
-        self.assertEqual(empresa.funcionarios[0].id, 0)
         
     def test_criar_funcionario_sem_empresa(self):
         with self.assertRaises(Exception):
-            funcionario = Funcionario('Joao', 0)
+            funcionario = Funcionario('Joao')
             
     def test_criar_dois_funcionarios_iguais(self):
         empresa = Empresa('Figueirense S.A.')
@@ -41,11 +40,10 @@ class TestBoard(unittest.TestCase):
         empresa = Empresa('Figueirense S.A.')
         empresa.criar_projeto('Libertadores 2028')
         self.assertEqual(empresa.projetos[0].nome, 'Libertadores 2028')
-        self.assertEqual(empresa.projetos[0].id, 0)
         
     def test_criar_projeto_sem_empresa(self):
         with self.assertRaises(Exception):
-            projeto = Projeto('Libertadores 2028', 0)
+            projeto = Projeto('Libertadores 2028')
     
     def test_criar_dois_projetos_iguais(self):
         empresa = Empresa('Figueirense S.A.')

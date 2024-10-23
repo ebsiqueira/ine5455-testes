@@ -8,16 +8,14 @@ class Empresa():
         self.projetos = list()
         
     def criar_funcionario(self, nome):
-        id_funcionario = len(self.funcionarios)
-        funcionario = Funcionario(nome, id_funcionario, self)
+        funcionario = Funcionario(nome, self)
         for funcionario in self.funcionarios:
             if funcionario.nome == nome:
                 raise('Funcionario já existe')
         self.funcionarios.append(funcionario)
         
     def criar_projeto(self, nome):
-        id_projeto = len(self.projetos)
-        projeto = Projeto(nome, id_projeto, self)
+        projeto = Projeto(nome, self)
         for projeto in self.projetos:
             if projeto.nome == nome:
                 raise('Projeto já existe')

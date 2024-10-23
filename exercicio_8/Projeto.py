@@ -1,6 +1,5 @@
 class Projeto():
-    def __init__(self, nome, id, empresa):
+    def __init__(self, nome, empresa):
         self.nome = nome
-        self.id = id
         self.empresa = empresa
         self.funcionarios = list()
