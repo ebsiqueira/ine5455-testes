@@ -17,5 +17,5 @@ class Empresa():
         
     def criar_projeto(self, nome):
         id_projeto = len(self.projetos)
-        projeto = Projeto(nome, id_projeto)
+        projeto = Projeto(nome, id_projeto, self)
         self.projetos.append(projeto)

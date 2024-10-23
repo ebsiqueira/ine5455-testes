@@ -1,4 +1,3 @@
-# Criar projeto
 # Criar um funcionario na empresa
 # Criar projeto na empresa
 # Um funcionario em um projeto
@@ -13,6 +12,7 @@
 import unittest
 from Empresa import Empresa
 from Funcionario import Funcionario
+from Projeto import Projeto
 
 class TestBoard(unittest.TestCase):
     
@@ -46,7 +46,9 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(empresa.projetos[0].nome, 'Libertadores 2028')
         self.assertEqual(empresa.projetos[0].id, 0)
         
-        
+    def test_criar_projeto_sem_empresa(self):
+        with self.assertRaises(Exception):
+            projeto = Projeto('Libertadores 2028', 0)
     
         
 if __name__ == '__main__':
