@@ -3,3 +3,4 @@ class Projeto():
         self.nome = nome
         self.id = id
         self.empresa = empresa
+        self.funcionarios = list()

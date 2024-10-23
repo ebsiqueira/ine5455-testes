@@ -3,3 +3,4 @@ class Funcionario():
         self.nome = nome
         self.id = id
         self.empresa = empresa
+        self.projetos = list()
