@@ -1,4 +1,3 @@
-# Um funcionario em um projeto
 # Um funcionaro em dois projetos
 # Dois funcionarios em um projeto
 
@@ -58,6 +57,18 @@ class TestBoard(unittest.TestCase):
         empresa.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
         self.assertEqual(empresa.projetos[0].funcionarios[0].nome, 'Joao')
         self.assertEqual(empresa.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        
+    def test_alocar_funcionario_em_dois_projetos(self):
+        empresa = Empresa('Figueirense S.A.')
+        empresa.criar_funcionario('Joao')
+        empresa.criar_projeto('Libertadores 2028')
+        empresa.criar_projeto('Mundial 2029')
+        empresa.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        empresa.alocar_funcionario_em_projeto('Joao', 'Mundial 2029')
+        self.assertEqual(empresa.projetos[0].funcionarios[0].nome, 'Joao')
+        self.assertEqual(empresa.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        self.assertEqual(empresa.projetos[1].funcionarios[0].nome, 'Joao')
+        self.assertEqual(empresa.funcionarios[0].projetos[1].nome, 'Mundial 2029')
     
 if __name__ == '__main__':
     unittest.main()
