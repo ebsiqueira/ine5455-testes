@@ -1,9 +1,3 @@
-# Dois funcionarios em um projeto
-
-# Nao felizes:
-
-# Criar funcionario em uma empresa e cadastrar ele em um projeto de outra empresa
-
 import unittest
 from Empresa import Empresa
 from Funcionario import Funcionario
