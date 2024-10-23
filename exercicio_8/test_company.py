@@ -1,5 +1,3 @@
-# Criar empresa
-# Criar funcionario
 # Criar projeto
 # Criar um funcionario na empresa
 # Criar projeto na empresa
@@ -8,7 +6,6 @@
 # Dois funcionarios em um projeto
 
 # Nao felizes:
-# Criar empresa sem nome
 # Criar projeto sem empresa
 # Criar funcionario sem empresa
 # Criar dois funcionarios iguais
@@ -17,6 +14,7 @@
 
 import unittest
 from Empresa import Empresa
+from Funcionario import Funcionario
 
 class TestBoard(unittest.TestCase):
     
@@ -33,6 +31,12 @@ class TestBoard(unittest.TestCase):
         empresa.criar_funcionario('Joao')
         self.assertEqual(empresa.funcionarios[0].nome, 'Joao')
         self.assertEqual(empresa.funcionarios[0].id, 0)
+        
+    def test_criar_funcionario_sem_empresa(self):
+        with self.assertRaises(Exception):
+            funcionario = Funcionario('Joao', 0)
+        
+    
         
 if __name__ == '__main__':
     unittest.main()

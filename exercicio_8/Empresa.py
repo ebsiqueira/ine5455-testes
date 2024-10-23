@@ -7,5 +7,5 @@ class Empresa():
         
     def criar_funcionario(self, nome):
         id_funcionario = len(self.funcionarios)
-        funcionario = Funcionario(nome, id_funcionario)
+        funcionario = Funcionario(nome, id_funcionario, self)
         self.funcionarios.append(funcionario)
