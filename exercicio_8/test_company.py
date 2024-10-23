@@ -7,7 +7,6 @@
 
 # Nao felizes:
 # Criar projeto sem empresa
-# Criar funcionario sem empresa
 # Criar dois funcionarios iguais
 
 # Criar funcionario em uma empresa e cadastrar ele em um projeto de outra empresa
@@ -35,6 +34,12 @@ class TestBoard(unittest.TestCase):
     def test_criar_funcionario_sem_empresa(self):
         with self.assertRaises(Exception):
             funcionario = Funcionario('Joao', 0)
+            
+    def test_criar_dois_funcionarios_iguais(self):
+        empresa = Empresa('Figueirense S.A.')
+        empresa.criar_funcionario('Joao')
+        with self.assertRaises(Exception):
+            empresa.criar_funcionario('Joao')
         
     
         
