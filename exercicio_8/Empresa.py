@@ -18,4 +18,7 @@ class Empresa():
     def criar_projeto(self, nome):
         id_projeto = len(self.projetos)
         projeto = Projeto(nome, id_projeto, self)
+        for projeto in self.projetos:
+            if projeto.nome == nome:
+                raise('Projeto já existe')
         self.projetos.append(projeto)

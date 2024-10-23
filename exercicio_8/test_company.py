@@ -5,7 +5,6 @@
 # Dois funcionarios em um projeto
 
 # Nao felizes:
-# Criar projeto sem empresa
 
 # Criar funcionario em uma empresa e cadastrar ele em um projeto de outra empresa
 
@@ -50,6 +49,11 @@ class TestBoard(unittest.TestCase):
         with self.assertRaises(Exception):
             projeto = Projeto('Libertadores 2028', 0)
     
+    def test_criar_dois_projetos_iguais(self):
+        empresa = Empresa('Figueirense S.A.')
+        empresa.criar_projeto('Libertadores 2028')
+        with self.assertRaises(Exception):
+            empresa.criar_projeto('Libertadores 2028')
         
 if __name__ == '__main__':
     unittest.main()
