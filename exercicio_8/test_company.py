@@ -13,3 +13,15 @@
 # Criar dois funcionarios iguais
 
 # Criar funcionario em uma empresa e cadastrar ele em um projeto de outra empresa
+
+import unittest
+from Empresa import Empresa
+
+class TestBoard(unittest.TestCase):
+    
+    def test_criar_empresa(self):
+        empresa = Empresa('Figueirense S.A')
+        self.assertEqual(empresa.nome, 'Figueirense S.A')
+
+if __name__ == '__main__':
+    unittest.main()
