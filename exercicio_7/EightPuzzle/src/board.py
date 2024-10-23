@@ -1,4 +1,4 @@
-from src.invalid_position_exception import InvalidPositionException
+from invalid_position_exception import InvalidPositionException
 
 class Board:  # Board comeca com a linha 1 e com a coluna 1
 

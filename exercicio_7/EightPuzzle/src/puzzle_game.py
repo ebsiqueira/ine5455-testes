@@ -1,5 +1,5 @@
-from src.board import Board
-from src.invalid_position_exception import InvalidPositionException
+from board import Board
+from invalid_position_exception import InvalidPositionException
 
 
 class PuzzleGame:
