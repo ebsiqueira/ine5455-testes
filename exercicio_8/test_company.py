@@ -2,6 +2,7 @@ import unittest
 from Empresa import Empresa
 from Funcionario import Funcionario
 from Projeto import Projeto
+from Ocorrencia import Ocorrencia
 
 class TestBoard(unittest.TestCase):
     
@@ -96,9 +97,43 @@ class TestBoard(unittest.TestCase):
         libertadores.criar_ocorrencia('Projeto para vencer a libertadores no ano de 2028.')
         self.assertEqual(figueirense.projetos[0].ocorrencias[0].id, 0)
         self.assertEqual(figueirense.projetos[0].ocorrencias[0].descricao, 'Projeto para vencer a libertadores no ano de 2028.')
+    
     # Ocorrencia não pode ser cirada fora do projeto
-    # Ocorrencia recebe funcionário
+    def test_ocorrencia_sem_projeto(self):
+        with self.assertRaises(Exception):
+            treinamento_novos_jogadores = Ocorrencia(0, 'Treinamento de novos jogadores')
+    
+    # Ocorrencia com funcionario fora do projeto
+    def test_atibui_funcionario_a_ocorrencia(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        treinamento_novos_jogadores = libertadores.criar_ocorrencia('Treinamento de novos jogadores')
+        with self.assertRaises(Exception):
+            treinamento_novos_jogadores.adicionar_responsavel('Joao')
+    
+    # Ocorrencia tem que ter responsavel em projeto
+    def test_atibui_funcionario_de_projeto_a_ocorrencia(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        treinamento_novos_jogadores = libertadores.criar_ocorrencia('Treinamento de novos jogadores')
+        treinamento_novos_jogadores.adicionar_responsavel('Joao')
+        self.assertEqual(treinamento_novos_jogadores.responsavel, 'Joao')
+    
     # Ocorrencia não pode receber funcionário de projeto diferente
+    def test_atribui_funcionario_de_projeto_diferente(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_projeto('Libertadores 2028')
+        serie_b = figueirense.criar_projeto('Serie B 2026')
+        figueirense.criar_funcionario('Joao')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        treinamento_novos_jogadores = serie_b.criar_ocorrencia('Treinamento de novos jogadores')
+        with self.assertRaises(Exception):
+            treinamento_novos_jogadores.adicionar_responsavel('Joao')
+
+    
     # Funcionário pode fechar ocorrencia
     # Ocorrencia pode mudar de resónsável quando aberta
     # Ocorrencia não pode mudar de responsável quando fechada

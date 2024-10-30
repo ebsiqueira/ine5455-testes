@@ -9,6 +9,6 @@ class Projeto():
         
     def criar_ocorrencia(self, descricao):
         id_ocorrencia = len(self.ocorrencias)
-        ocorrencia = Ocorrencia(id_ocorrencia, descricao)
+        ocorrencia = Ocorrencia(id_ocorrencia, descricao, self)
         self.ocorrencias.append(ocorrencia)
         return ocorrencia
