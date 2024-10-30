@@ -6,73 +6,106 @@ from Projeto import Projeto
 class TestBoard(unittest.TestCase):
     
     def test_criar_empresa(self):
-        empresa = Empresa('Figueirense S.A.')
-        self.assertEqual(empresa.nome, 'Figueirense S.A.')
+        figueirense = Empresa('Figueirense S.A.')
+        self.assertEqual(figueirense.nome, 'Figueirense S.A.')
         
     def test_criar_empresa_sem_nome(self):
         with self.assertRaises(Exception):
-            empresa = Empresa()
+            empresa_sem_nome = Empresa()
             
     def test_criar_funcionario(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_funcionario('Joao')
-        self.assertEqual(empresa.funcionarios[0].nome, 'Joao')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        self.assertEqual(figueirense.funcionarios[0].nome, 'Joao')
+        
+    def test_criar_dois_funcionarios(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_funcionario('Jose')
+        self.assertEqual(figueirense.funcionarios[0].nome, 'Joao')
+        self.assertEqual(figueirense.funcionarios[1].nome, 'Jose')
         
     def test_criar_funcionario_sem_empresa(self):
         with self.assertRaises(Exception):
             funcionario = Funcionario('Joao')
             
     def test_criar_dois_funcionarios_iguais(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_funcionario('Joao')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
         with self.assertRaises(Exception):
-            empresa.criar_funcionario('Joao')
+            figueirense.criar_funcionario('Joao')
             
     def test_criar_projeto(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_projeto('Libertadores 2028')
-        self.assertEqual(empresa.projetos[0].nome, 'Libertadores 2028')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_projeto('Libertadores 2028')
+        self.assertEqual(figueirense.projetos[0].nome, 'Libertadores 2028')
+        
+    def test_criar_dois_projetos(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_projeto('Libertadores 2028')
+        figueirense.criar_projeto('Mundial 2029')
+        self.assertEqual(figueirense.projetos[0].nome, 'Libertadores 2028')
+        self.assertEqual(figueirense.projetos[1].nome, 'Mundial 2029')
         
     def test_criar_projeto_sem_empresa(self):
         with self.assertRaises(Exception):
-            projeto = Projeto('Libertadores 2028')
+            libertadores = Projeto('Libertadores 2028')
     
     def test_criar_dois_projetos_iguais(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_projeto('Libertadores 2028')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_projeto('Libertadores 2028')
         with self.assertRaises(Exception):
-            empresa.criar_projeto('Libertadores 2028')
+            figueirense.criar_projeto('Libertadores 2028')
         
     def test_alocar_funcionario_em_projeto(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_funcionario('Joao')
-        empresa.criar_projeto('Libertadores 2028')
-        empresa.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
-        self.assertEqual(empresa.projetos[0].funcionarios[0].nome, 'Joao')
-        self.assertEqual(empresa.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_projeto('Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        self.assertEqual(figueirense.projetos[0].funcionarios[0].nome, 'Joao')
+        self.assertEqual(figueirense.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
         
     def test_alocar_funcionario_em_dois_projetos(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_funcionario('Joao')
-        empresa.criar_projeto('Libertadores 2028')
-        empresa.criar_projeto('Mundial 2029')
-        empresa.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
-        empresa.alocar_funcionario_em_projeto('Joao', 'Mundial 2029')
-        self.assertEqual(empresa.projetos[0].funcionarios[0].nome, 'Joao')
-        self.assertEqual(empresa.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
-        self.assertEqual(empresa.projetos[1].funcionarios[0].nome, 'Joao')
-        self.assertEqual(empresa.funcionarios[0].projetos[1].nome, 'Mundial 2029')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_projeto('Libertadores 2028')
+        figueirense.criar_projeto('Mundial 2029')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Mundial 2029')
+        self.assertEqual(figueirense.projetos[0].funcionarios[0].nome, 'Joao')
+        self.assertEqual(figueirense.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        self.assertEqual(figueirense.projetos[1].funcionarios[0].nome, 'Joao')
+        self.assertEqual(figueirense.funcionarios[0].projetos[1].nome, 'Mundial 2029')
         
     def test_alocar_dois_funcionario_em_projeto(self):
-        empresa = Empresa('Figueirense S.A.')
-        empresa.criar_funcionario('Joao')
-        empresa.criar_funcionario('Jose')
-        empresa.criar_projeto('Libertadores 2028')
-        empresa.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
-        empresa.alocar_funcionario_em_projeto('Jose', 'Libertadores 2028')
-        self.assertEqual(empresa.projetos[0].funcionarios[0].nome, 'Joao')
-        self.assertEqual(empresa.projetos[0].funcionarios[1].nome, 'Jose')
-        self.assertEqual(empresa.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_funcionario('Jose')
+        figueirense.criar_projeto('Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Jose', 'Libertadores 2028')
+        self.assertEqual(figueirense.projetos[0].funcionarios[0].nome, 'Joao')
+        self.assertEqual(figueirense.projetos[0].funcionarios[1].nome, 'Jose')
+        self.assertEqual(figueirense.funcionarios[0].projetos[0].nome, 'Libertadores 2028')
+        
+    # Projeto cria ocorrencia
+    #   Ocorrencia tem ID e descrição
+    def test_projeto_cria_ocorrencia(self):
+        figueirense = Empresa('Figueirense S.A.')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        libertadores.criar_ocorrencia('Projeto para vencer a libertadores no ano de 2028.')
+        self.assertEqual(figueirense.projetos[0].ocorrencias[0].id, 0)
+        self.assertEqual(figueirense.projetos[0].ocorrencias[0].descricao, 'Projeto para vencer a libertadores no ano de 2028.')
+    # Ocorrencia não pode ser cirada fora do projeto
+    # Ocorrencia recebe funcionário
+    # Ocorrencia não pode receber funcionário de projeto diferente
+    # Funcionário pode fechar ocorrencia
+    # Ocorrencia pode mudar de resónsável quando aberta
+    # Ocorrencia não pode mudar de responsável quando fechada
+    # Funcionário pode ter até 10 ocorrencias abertas
+    # Ocorrencia possui três tipos e possui uma prioridade associada
+    # Ocorrencia pode mudar prioridade quando aberta
+    # Ocorrencia não pode mudar de prioridade quando fechada
     
 if __name__ == '__main__':
     unittest.main()

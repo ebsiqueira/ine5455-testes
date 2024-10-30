@@ -20,6 +20,7 @@ class Empresa():
                 raise('Projeto já existe')
         projeto_novo = Projeto(nome, self)
         self.projetos.append(projeto_novo)
+        return projeto_novo
         
     def alocar_funcionario_em_projeto(self, nome_funcionario, nome_projeto):
         for funcionario in self.funcionarios:
