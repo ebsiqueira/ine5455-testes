@@ -132,9 +132,15 @@ class TestBoard(unittest.TestCase):
         treinamento_novos_jogadores = serie_b.criar_ocorrencia('Treinamento de novos jogadores')
         with self.assertRaises(Exception):
             treinamento_novos_jogadores.adicionar_responsavel('Joao')
-
-    
+  
     # Funcionário pode fechar ocorrencia
+    def test_fecha_ocorrencia(self):
+        figueirense = Empresa('Figueirense S.A.')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        treinamento_novos_jogadores = libertadores.criar_ocorrencia('Treinamento de novos jogadores')
+        treinamento_novos_jogadores.fechar_ocorrencia()
+        self.assertEqual(treinamento_novos_jogadores.aberta, False)
+    
     # Ocorrencia pode mudar de resónsável quando aberta
     # Ocorrencia não pode mudar de responsável quando fechada
     # Funcionário pode ter até 10 ocorrencias abertas

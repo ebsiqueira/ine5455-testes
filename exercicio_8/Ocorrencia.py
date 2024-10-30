@@ -4,6 +4,7 @@ class Ocorrencia():
         self.id = id
         self.projeto = projeto
         self.responsavel = None
+        self.aberta = True
         
     def adicionar_responsavel(self, responsavel):
         for funcionario in self.projeto.funcionarios:
@@ -11,3 +12,7 @@ class Ocorrencia():
                 self.responsavel = responsavel
                 return self.responsavel
         raise Exception
+    
+    def fechar_ocorrencia(self):
+        self.aberta = False
+    

@@ -13,6 +13,7 @@ class Empresa():
                 raise('Funcionario já existe')
         funcionario_novo = Funcionario(nome, self)
         self.funcionarios.append(funcionario_novo)
+        return funcionario_novo
         
     def criar_projeto(self, nome):
         for projeto in self.projetos:
