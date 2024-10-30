@@ -7,11 +7,14 @@ class Ocorrencia():
         self.aberta = True
         
     def adicionar_responsavel(self, responsavel):
-        for funcionario in self.projeto.funcionarios:
-            if(funcionario.nome == responsavel):
-                self.responsavel = responsavel
-                return self.responsavel
-        raise Exception
+        if(self.aberta):
+            for funcionario in self.projeto.funcionarios:
+                if(funcionario.nome == responsavel):
+                    self.responsavel = responsavel
+                    return self.responsavel
+            raise Exception
+        else:
+            raise Exception
     
     def fechar_ocorrencia(self):
         self.aberta = False

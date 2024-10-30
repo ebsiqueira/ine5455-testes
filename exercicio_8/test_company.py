@@ -142,7 +142,33 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(treinamento_novos_jogadores.aberta, False)
     
     # Ocorrencia pode mudar de resónsável quando aberta
+    def test_ocorrencia_muda_responsavel(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_funcionario('Jose')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Jose', 'Libertadores 2028')
+        treinamento_novos_jogadores = libertadores.criar_ocorrencia('Treinamento de novos jogadores')
+        treinamento_novos_jogadores.adicionar_responsavel('Joao')
+        treinamento_novos_jogadores.adicionar_responsavel('Jose')
+        self.assertEqual(treinamento_novos_jogadores.responsavel, 'Jose')
+    
     # Ocorrencia não pode mudar de responsável quando fechada
+    def test_ocorrencia_muda_responsavel_fechada(self):
+        figueirense = Empresa('Figueirense S.A.')
+        figueirense.criar_funcionario('Joao')
+        figueirense.criar_funcionario('Jose')
+        libertadores = figueirense.criar_projeto('Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Joao', 'Libertadores 2028')
+        figueirense.alocar_funcionario_em_projeto('Jose', 'Libertadores 2028')
+        treinamento_novos_jogadores = libertadores.criar_ocorrencia('Treinamento de novos jogadores')
+        treinamento_novos_jogadores.adicionar_responsavel('Joao')
+        treinamento_novos_jogadores.fechar_ocorrencia()
+        with self.assertRaises(Exception):
+            treinamento_novos_jogadores.adicionar_responsavel('Jose')
+    
+    
     # Funcionário pode ter até 10 ocorrencias abertas
     # Ocorrencia possui três tipos e possui uma prioridade associada
     # Ocorrencia pode mudar prioridade quando aberta
