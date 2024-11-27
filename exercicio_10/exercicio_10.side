@@ -1,0 +1,48 @@
+{
+  "id": "2be982d1-e2f0-4aed-b5f3-2e6d494ebaa9",
+  "version": "2.0",
+  "name": "exercicio_10",
+  "url": "https://www.google.com.br",
+  "tests": [{
+    "id": "4a7f7065-83c6-40bc-aec5-8e70aacb35bf",
+    "name": "Untitled",
+    "commands": [{
+      "id": "b120eb72-53e6-4421-8543-5199f8233fcd",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "930be20f-d835-477b-ae5d-2794f83d5188",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["id=APjFqb", "id"],
+        ["name=q", "name"],
+        ["css=#APjFqb", "css:finder"],
+        ["xpath=//textarea[@id='APjFqb']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Eduardo Borges Siqueira"
+    }, {
+      "id": "514170b0-37c9-49ee-84cf-d3c52e9b2989",
+      "comment": "",
+      "command": "click",
+      "target": "name=btnK",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "f0fa5406-3fd9-4c94-8220-b1daa2dfaf27",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4a7f7065-83c6-40bc-aec5-8e70aacb35bf"]
+  }],
+  "urls": ["https://www.google.com/", "https://www.google.com.br/"],
+  "plugins": []
+}
